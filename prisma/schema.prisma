@@ -15,12 +15,14 @@ model Page {
   authorId   Int
   components Json?    @db.Json
   styles     Json?    @db.Json
+  slug       String   @default(dbgenerated("uuid_generate_v4()")) @db.VarChar
   author     User     @relation(fields: [authorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  name  String? @db.VarChar(255)
-  email String  @unique @db.VarChar(255)
-  pages Page[]
+  id       Int     @id @default(autoincrement())
+  name     String? @db.VarChar(255)
+  email    String  @unique @db.VarChar(255)
+  username String  @unique @db.VarChar
+  pages    Page[]
 }
