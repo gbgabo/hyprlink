@@ -25,14 +25,6 @@ type IconComponent = {
   type: "icon";
 };
 
-type ProfileComponent = {
-  name: string;
-  address: string | undefined;
-  image: string;
-  display: boolean;
-  displayName: boolean;
-};
-
 type Component =
   | LinkComponent
   | PanelComponent
@@ -40,7 +32,7 @@ type Component =
   | IconComponent
   | ProfileComponent;
 
-type Styles = object;
+type Styles = object[string];
 
 type Page = {
   title: string;
