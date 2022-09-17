@@ -2,11 +2,9 @@ import type { GetServerSideProps, NextPage } from "next";
 import Page from "../../components/Page";
 import { getPage } from "../../lib/pages";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const username =
-    typeof context.query.username! !== "string"
-      ? context.query.username![0]
-      : context.query.username!;
+    typeof query.username! !== "string" ? query.username![0] : query.username!;
 
   const page = await getPage(username, username);
 

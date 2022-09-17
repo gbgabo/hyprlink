@@ -34,8 +34,8 @@ type Component =
 
 type Styles = object[string];
 
-type Page = {
+interface Page {
   title: string;
   components: Component[];
   styles: Styles;
-};
+}
