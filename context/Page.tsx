@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState } from "react";
-import page from "../default-page";
 
 interface PageContext extends Page {
   updateStyles: (selector: string, rules: Object) => void;
@@ -9,12 +8,13 @@ interface PageContext extends Page {
 }
 
 interface Props {
+  page: Page;
   children: React.ReactNode;
 }
 
 const PageContext = createContext<PageContext | null>(null);
 
-export const PageProvider: React.FC<Props> = ({ children }) => {
+export const PageProvider: React.FC<Props> = ({ children, page }) => {
   const [title, setTitle] = useState(page.title);
   const [styles, setStyles] = useState<Styles>(page.styles);
   const [components, setComponents] = useState<Component[]>(page.components);
@@ -47,7 +47,22 @@ export const PageProvider: React.FC<Props> = ({ children }) => {
 export function usePage() {
   const context = useContext(PageContext);
   if (!context) throw new Error("useTheme must be used within a PageProvider");
-  const { title, components, styles, setComponents, setStyles, updateStyles } =
-    context;
-  return { title, components, styles, setComponents, setStyles, updateStyles };
+  const {
+    title,
+    components,
+    styles,
+    setTitle,
+    setComponents,
+    setStyles,
+    updateStyles,
+  } = context;
+  return {
+    title,
+    components,
+    styles,
+    setTitle,
+    setComponents,
+    setStyles,
+    updateStyles,
+  };
 }

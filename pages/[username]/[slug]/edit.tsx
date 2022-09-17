@@ -37,7 +37,7 @@ const EditWrapper = () => {
 
 const Edit: NextPage = ({ page }: any) => {
   return (
-    <PageProvider>
+    <PageProvider page={JSON.parse(page)}>
       <EditWrapper />
     </PageProvider>
   );
